@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         if(!context.started) return; //nao roda o codigo durante o pulo
-        if(!isGrounded()) return; //nao roda o codigo se o personagem esta no ar
+        if(!isGrounded()) return; //nao roda o codigo se o personagem esta no ar 
 
         _velocity += jumpPower; //velocidade vertical
     }

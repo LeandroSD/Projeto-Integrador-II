@@ -5946,7 +5946,7 @@ GameObject:
   - component: {fileID: 3358496346005544510}
   - component: {fileID: 3358496346005544512}
   - component: {fileID: 3358496346005544514}
-  - component: {fileID: 3358496346005544515}
+  - component: {fileID: 3358496346005544513}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -5997,7 +5997,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544515}
+      - m_Target: {fileID: 3358496346005544514}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -6017,7 +6017,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Mover Setas[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544515}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
@@ -6092,7 +6092,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3358496346005544514
+--- !u!114 &3358496346005544513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6104,8 +6104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1e129ec7e015045917aaa766e9ea4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 1
---- !u!114 &3358496346005544515
+  pushForce: 1.15
+--- !u!114 &3358496346005544514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

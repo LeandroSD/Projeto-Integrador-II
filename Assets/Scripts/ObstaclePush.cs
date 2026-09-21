@@ -24,7 +24,7 @@ public class ObstaclePush : MonoBehaviour
             return;
         }
 
-        if(_rigidbody != null) //sistema de empurrar
+        if(_rigidbody != null) //sistema de empurrar 
         {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
             forceDirection.y = 0;
