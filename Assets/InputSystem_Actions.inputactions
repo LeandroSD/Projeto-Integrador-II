@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interagir",
+                    "type": "Button",
+                    "id": "a6f62a3c-3bb0-4fc8-9766-1402b04bc28f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -49,7 +58,7 @@
                 {
                     "name": "up",
                     "id": "2ec77e42-e584-4d85-a420-95f18bd41f09",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -60,7 +69,7 @@
                 {
                     "name": "down",
                     "id": "8ecacbc5-f591-410a-9e2f-dcafbf30a33f",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -71,7 +80,7 @@
                 {
                     "name": "left",
                     "id": "b4b288ff-ac7d-4a74-8c67-21bbe8248948",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -82,7 +91,7 @@
                 {
                     "name": "right",
                     "id": "e7066fc4-5401-4182-8d16-f72ea70a386c",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -153,6 +162,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pular",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77d4916e-9f81-461b-b705-bd740a9a6cac",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interagir",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
