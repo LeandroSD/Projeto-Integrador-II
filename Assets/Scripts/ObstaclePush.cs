@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ObstaclePush : MonoBehaviour
 {
@@ -10,12 +11,12 @@ public class ObstaclePush : MonoBehaviour
     void Update()
     {
     }
-//fazer interação entre CharacterController e Rigidbody
+    //fazer interação entre CharacterController e Rigidbody
     public void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody _rigidbody = hit.collider.attachedRigidbody; //detecta o rigidbody do objeto colidido
 
-        if (!Input.GetKey(KeyCode.E)) //nao roda o codigo se E não tiver pressionado
+        if (Keyboard.current == null || !Keyboard.current.eKey.isPressed) //nao roda o codigo se E não tiver pressionado
         {
             return;
         }
