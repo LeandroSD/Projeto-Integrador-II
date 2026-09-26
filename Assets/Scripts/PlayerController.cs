@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed; //velocidade movimento
     [SerializeField] private float jumpPower; //força do pulo
+    [SerializeField] private float limiteFundo;
+    [SerializeField] private float limiteBorda;
 
     void Awake()
     {
@@ -23,13 +25,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ApplyGravity();
+       
         _characterController.Move(_direction * speed * Time.deltaTime);
+
+
+        //Manter a checagem de limitacao de posição apos a aplicação do movimento - NÃO MEXER
+         ChecarLimites();
     }
 //sistema movimentacao
     public void Move(InputAction.CallbackContext context)
     {
         _input = context.ReadValue<Vector2>(); //coloca o valor das teclas do sistema de input na variavel _input
+         
         _direction = new Vector3(_input.x, 0.0f, _input.y);
+
+        Vector3 movimentoFinal = (_direction * _velocity) + (_direction.y * Vector3.up);
+
+        _characterController.Move(movimentoFinal * Time.deltaTime);
+    
+       
     }
 //aplicar gravidade
     private void ApplyGravity()
@@ -52,6 +66,21 @@ public class PlayerController : MonoBehaviour
 
         _velocity += jumpPower; //velocidade vertical
     }
+    
+    private void ChecarLimites()
+    {
+         if(transform.position.x > limiteFundo)
+        {
+            Debug.Log("Passou");
+            
+            transform.position = new Vector3(limiteFundo, transform.position.y, transform.position.z);
+        }
+        else if(transform.position.x < limiteBorda)
+        {
+            transform.position = new Vector3(limiteBorda, transform.position.y, transform.position.z);
+        }
+    }
+
     private bool isGrounded() => _characterController.isGrounded;
 
 }
