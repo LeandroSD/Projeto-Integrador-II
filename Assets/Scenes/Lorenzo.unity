@@ -6155,6 +6155,8 @@ MonoBehaviour:
   gravityMultiplier: 1
   speed: 7
   jumpPower: 4
+  limiteFundo: -50
+  limiteBorda: -60
   smoothTime: 0.05
   pushableLayer:
     serializedVersion: 2

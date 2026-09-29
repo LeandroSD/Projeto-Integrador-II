@@ -3,7 +3,7 @@ using UnityEngine;
 public class ObstaclePullPush : MonoBehaviour
 {
     [SerializeField] private float interactRange = 1f; // range de interação com o objeto
-    [SerializeField] private float pushForce; //força que empurra a caixa
+    [SerializeField] private float pushForce; // força que empurra a caixa
     [SerializeField] private LayerMask pushableLayer; // layer que os objetos podem ser puxados
     [SerializeField] private Transform grabPoint; // ponto transform em que o objeto vai grudar
 
@@ -88,7 +88,7 @@ public class ObstaclePullPush : MonoBehaviour
                 forceDirection.z = hit.normal.z > 0 ? -1f : 1f;
             }
 
-        _rigidbody.AddForce(forceDirection * pushForce, ForceMode.Impulse); //aplica o movimento final
+        _rigidbody.AddForce(forceDirection * pushForce, ForceMode.Impulse); // aplica o movimento final
         }
     }
 }
