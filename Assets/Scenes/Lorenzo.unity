@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 496363733}
   - component: {fileID: 496363732}
   - component: {fileID: 496363736}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CaixaInical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1415,7 +1415,7 @@ Transform:
   m_GameObject: {fileID: 496363731}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.99, y: 4.4, z: -42.86}
+  m_LocalPosition: {x: -50.99, y: 4.4, z: -37.86}
   m_LocalScale: {x: 5, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1429,7 +1429,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496363731}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 15
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1446,7 +1446,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &497154757
 GameObject:
@@ -1515,15 +1515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2453ac905d37b84aa82aa04aedfeaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMovimentacao: {x: 0, y: 0}
-  _characterController: {fileID: 536539532}
-  _velocidadeMovimentacao: 5
-  _multiplicadorGravidade: 1
-  _forcaPulo: 5
-  _estaNoChao: 1
-  _podePular: 0
-  _cameraVirtual: {fileID: 1117407235}
-  _velocidadeRotacao: 1
 --- !u!114 &536539531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,6 +1560,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b1be07c9-1145-43c5-b4c4-1e3d1761e760
     m_ActionName: 'Player/Mover Setas[/Keyboard/upArrow,/Keyboard/leftArrow,/Keyboard/downArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f63216b3-4fd2-4988-b337-ee95233e8e36
+    m_ActionName: 'Player/Pular[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
+    m_ActionName: 'Player/Interagir[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1917,7 +1916,7 @@ GameObject:
   - component: {fileID: 717653852}
   - component: {fileID: 717653851}
   - component: {fileID: 717653853}
-  - component: {fileID: 717653854}
+  - component: {fileID: 717653856}
   - component: {fileID: 717653855}
   m_Layer: 0
   m_Name: CinemachinePlayer1
@@ -1977,7 +1976,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717653848}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13896258, y: 0.6919294, z: -0.13838477, w: 0.6948185}
+  m_LocalRotation: {x: 0.1389626, y: 0.6919294, z: -0.13838477, w: 0.6948185}
   m_LocalPosition: {x: -15.071884, y: 12.886869, z: 106.2632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2003,19 +2002,6 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: -24, y: 10, z: -0.1}
---- !u!114 &717653854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717653848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LookAtOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &717653855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2030,6 +2016,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoundingVolume: {fileID: 1995732478}
   SlowingDistance: 1
+--- !u!114 &717653856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717653848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 0, z: 0}
+  Damping: {x: 0.5, y: 0.5}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1 &751312699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,7 +2907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117407230}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13896258, y: 0.6919294, z: -0.13838477, w: 0.6948185}
+  m_LocalRotation: {x: 0.13896261, y: 0.69192946, z: -0.1383848, w: 0.6948185}
   m_LocalPosition: {x: -15.071884, y: 12.886869, z: 106.2632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3613,6 +3628,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174703199}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1180285488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1180285489}
+  m_Layer: 0
+  m_Name: PontoInteracaoPush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1180285489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180285488}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3358496346005544508}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1187666387
 GameObject:
   m_ObjectHideFlags: 0
@@ -5945,12 +5991,12 @@ GameObject:
   - component: {fileID: 3358496346005544508}
   - component: {fileID: 3358496346005544511}
   - component: {fileID: 3358496346005544510}
-  - component: {fileID: 3358496346005544509}
   - component: {fileID: 3358496346005544512}
-  - component: {fileID: 3358496346005544513}
+  - component: {fileID: 3358496346005544514}
+  - component: {fileID: 3358496346005544515}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5969,29 +6015,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1494597110028643071}
+  - {fileID: 1180285489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &3358496346005544509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2724702021422400646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2453ac905d37b84aa82aa04aedfeaef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inputMovimentacao: {x: 0, y: 0}
-  _characterController: {fileID: 3358496346005544511}
-  _velocidadeMovimentacao: 5
-  _multiplicadorGravidade: 1
-  _forcaPulo: 5
-  _estaNoChao: 1
-  _podePular: 0
-  _cameraVirtual: {fileID: 1117407235}
-  _velocidadeRotacao: 2
 --- !u!114 &3358496346005544510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6019,9 +6045,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544509}
-        m_TargetAssemblyTypeName: Locomocao, Assembly-CSharp
-        m_MethodName: GetMoverInput
+      - m_Target: {fileID: 3358496346005544514}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6039,9 +6065,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Mover Setas[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544509}
-        m_TargetAssemblyTypeName: Locomocao, Assembly-CSharp
-        m_MethodName: GetPularInput
+      - m_Target: {fileID: 3358496346005544514}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6053,6 +6079,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f63216b3-4fd2-4988-b337-ee95233e8e36
     m_ActionName: 'Player/Pular[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
+    m_ActionName: 'Player/Interagir[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -6110,7 +6140,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3358496346005544513
+--- !u!114 &3358496346005544514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6119,10 +6149,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 2724702021422400646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be16215eb2184641b58af251dd271b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5396ed073b6776048a2680412a2d8823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMagnitude: 5
+  gravityMultiplier: 1
+  speed: 7
+  jumpPower: 4
+  smoothTime: 0.05
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  interactRange: 0.25
+--- !u!114 &3358496346005544515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724702021422400646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536c7489ef710a446b3205a03fd932a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 0.25
+  pushForce: 8
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  grabPoint: {fileID: 1180285489}
 --- !u!33 &3569678946394593879
 MeshFilter:
   m_ObjectHideFlags: 0
