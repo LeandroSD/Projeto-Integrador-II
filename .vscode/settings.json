@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "PI2.slnx"
+    "dotnet.defaultSolution": "Projeto-Integrador-II.slnx"
 }
