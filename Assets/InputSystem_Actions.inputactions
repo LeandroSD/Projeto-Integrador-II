@@ -41,6 +41,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Abaixar",
+                    "type": "Button",
+                    "id": "b0bfb4d8-af42-4440-9346-6429306545a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -173,6 +182,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interagir",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d883270-ae46-446d-a3d5-feb746e887ec",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Abaixar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
