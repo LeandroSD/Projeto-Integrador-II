@@ -1325,6 +1325,7 @@ GameObject:
   - component: {fileID: 496363733}
   - component: {fileID: 496363732}
   - component: {fileID: 496363736}
+  - component: {fileID: 496363737}
   m_Layer: 9
   m_Name: CaixaInical
   m_TagString: Untagged
@@ -1448,6 +1449,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &496363737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496363731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d1ae07c3ce45a4f8b9a56a042c5973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -8
+  maxX: 8
+  minZ: -20
+  maxZ: 5
 --- !u!1 &497154757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,8 +1993,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717653848}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1389626, y: 0.6919294, z: -0.13838477, w: 0.6948185}
-  m_LocalPosition: {x: -15.071884, y: 12.886869, z: 106.2632}
+  m_LocalRotation: {x: 0.12311966, y: 0.6942702, z: -0.122380204, w: 0.69846517}
+  m_LocalPosition: {x: -7.6718826, y: 8.92687, z: 106.2632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2001,7 +2018,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: -24, y: 10, z: -0.1}
+  FollowOffset: {x: -16.6, y: 6.04, z: -0.1}
 --- !u!114 &717653855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2907,8 +2924,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117407230}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13896261, y: 0.69192946, z: -0.1383848, w: 0.6948185}
-  m_LocalPosition: {x: -15.071884, y: 12.886869, z: 106.2632}
+  m_LocalRotation: {x: 0.12311966, y: 0.69427025, z: -0.12238022, w: 0.6984651}
+  m_LocalPosition: {x: -7.6718826, y: 8.92687, z: 106.2632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5993,7 +6010,7 @@ GameObject:
   - component: {fileID: 3358496346005544510}
   - component: {fileID: 3358496346005544512}
   - component: {fileID: 3358496346005544514}
-  - component: {fileID: 3358496346005544515}
+  - component: {fileID: 3358496346005544513}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -6046,7 +6063,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3358496346005544514}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerControllerLo, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -6066,7 +6083,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3358496346005544514}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerControllerLo, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -6083,6 +6100,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
     m_ActionName: 'Player/Interagir[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0bfb4d8-af42-4440-9346-6429306545a2
+    m_ActionName: 'Player/Abaixar[/Keyboard/leftCtrl]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -6140,6 +6161,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3358496346005544513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724702021422400646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081354c332606534990dae35eeb079d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 0.25
+  pushForce: 8
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  grabPoint: {fileID: 1180285489}
 --- !u!114 &3358496346005544514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6149,7 +6188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2724702021422400646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5396ed073b6776048a2680412a2d8823, type: 3}
+  m_Script: {fileID: 11500000, guid: 761587e16a0fdf74385a822959eb9c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gravityMultiplier: 1
@@ -6162,24 +6201,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   interactRange: 0.25
---- !u!114 &3358496346005544515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2724702021422400646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536c7489ef710a446b3205a03fd932a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactRange: 0.25
-  pushForce: 8
-  pushableLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  grabPoint: {fileID: 1180285489}
 --- !u!33 &3569678946394593879
 MeshFilter:
   m_ObjectHideFlags: 0
