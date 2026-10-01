@@ -6633,6 +6633,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
     m_ActionName: 'Player/Interagir[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0bfb4d8-af42-4440-9346-6429306545a2
+    m_ActionName: 'Player/Abaixar[/Keyboard/leftCtrl]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -6702,7 +6706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1e129ec7e015045917aaa766e9ea4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 0
 --- !u!114 &3358496346005544514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6716,10 +6719,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityMultiplier: 1
-  speed: 8
-  jumpPower: 5
+  speed: 6
+  jumpPower: 3.5
   limiteFundo: -50
   limiteBorda: -60
+  smoothTime: 0.05
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  interactRange: 0.25
 --- !u!33 &3569678946394593879
 MeshFilter:
   m_ObjectHideFlags: 0
