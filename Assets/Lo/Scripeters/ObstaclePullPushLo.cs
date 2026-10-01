@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObstaclePullPush : MonoBehaviour
+public class ObstaclePullPushLo : MonoBehaviour
 {
     [SerializeField] private float interactRange = 1f; // range de interação com o objeto
     [SerializeField] private float pushForce; // força que empurra a caixa

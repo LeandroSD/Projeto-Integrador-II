@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerLo : MonoBehaviour
 {
     private Vector2 _input;
     private CharacterController _characterController;
