@@ -927,7 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be16215eb2184641b58af251dd271b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMagnitude: 5
 --- !u!54 &331117453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -967,15 +966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2453ac905d37b84aa82aa04aedfeaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMovimentacao: {x: 0, y: 0}
-  _characterController: {fileID: 331117456}
-  _velocidadeMovimentacao: 5
-  _multiplicadorGravidade: 1
-  _forcaPulo: 5
-  _estaNoChao: 1
-  _podePular: 0
-  _cameraVirtual: {fileID: 1117407235}
-  _velocidadeRotacao: 2
 --- !u!143 &331117456
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1739,15 +1729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2453ac905d37b84aa82aa04aedfeaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMovimentacao: {x: 0, y: 0}
-  _characterController: {fileID: 536539532}
-  _velocidadeMovimentacao: 5
-  _multiplicadorGravidade: 1
-  _forcaPulo: 5
-  _estaNoChao: 1
-  _podePular: 0
-  _cameraVirtual: {fileID: 1117407235}
-  _velocidadeRotacao: 1
 --- !u!114 &536539531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6256,8 +6237,8 @@ GameObject:
   - component: {fileID: 3358496346005544508}
   - component: {fileID: 3358496346005544511}
   - component: {fileID: 3358496346005544510}
-  - component: {fileID: 3358496346005544509}
   - component: {fileID: 3358496346005544512}
+  - component: {fileID: 3358496346005544514}
   - component: {fileID: 3358496346005544513}
   m_Layer: 0
   m_Name: Player1
@@ -6282,27 +6263,6 @@ Transform:
   - {fileID: 1494597110028643071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &3358496346005544509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2724702021422400646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2453ac905d37b84aa82aa04aedfeaef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inputMovimentacao: {x: 0, y: 0}
-  _characterController: {fileID: 3358496346005544511}
-  _velocidadeMovimentacao: 5
-  _multiplicadorGravidade: 1
-  _forcaPulo: 5
-  _estaNoChao: 1
-  _podePular: 0
-  _cameraVirtual: {fileID: 1117407235}
-  _velocidadeRotacao: 2
 --- !u!114 &3358496346005544510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6330,9 +6290,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544509}
-        m_TargetAssemblyTypeName: Locomocao, Assembly-CSharp
-        m_MethodName: GetMoverInput
+      - m_Target: {fileID: 3358496346005544513}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6350,9 +6310,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Mover Setas[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544509}
-        m_TargetAssemblyTypeName: Locomocao, Assembly-CSharp
-        m_MethodName: GetPularInput
+      - m_Target: {fileID: 3358496346005544513}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6364,6 +6324,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f63216b3-4fd2-4988-b337-ee95233e8e36
     m_ActionName: 'Player/Pular[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
+    m_ActionName: 'Player/Interagir[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -6430,10 +6394,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 2724702021422400646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be16215eb2184641b58af251dd271b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5396ed073b6776048a2680412a2d8823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMagnitude: 5
+  gravityMultiplier: 1
+  speed: 7
+  jumpPower: 1
+  limiteFundo: -50
+  limiteBorda: -60
+  smoothTime: 0.05
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  interactRange: 0.25
+--- !u!114 &3358496346005544514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724702021422400646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536c7489ef710a446b3205a03fd932a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 0.25
+  pushForce: 8
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  grabPoint: {fileID: 3358496346005544508}
 --- !u!33 &3569678946394593879
 MeshFilter:
   m_ObjectHideFlags: 0
