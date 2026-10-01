@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float _gravity = -9.81f; // gravidade
     private float _velocity; // velocidade vertical
 
-    [SerializeField] private float speed = 7; // velocidade movimento
+    [SerializeField] private float speed; // velocidade movimento
     [SerializeField] private float jumpPower; // força do pulo
     private float _currentVelocity;
 
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
         ChecarLimites(); // Manter a checagem de limitacao de posição apos a aplicação do movimento - NÃO MEXER
     }
-//sistema movimentacao
+    //sistema movimentacao
     public void Move(InputAction.CallbackContext context)
     {
         _input = context.ReadValue<Vector2>(); //coloca o valor das teclas do sistema de input na variavel _input
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movimentoFinal = (_direction * _velocity) + (_direction.y * Vector3.up);
         _characterController.Move(movimentoFinal * Time.deltaTime);
     }
-//aplicar gravidade
+    //aplicar gravidade
     private void ApplyGravity()
     {
         if (isGrounded() && _velocity < 0.0f)
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         _direction.y = _velocity;
     }
-//sistema de pulo
+    //sistema de pulo
     public void Jump(InputAction.CallbackContext context)
     {
         bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
         _velocity += jumpPower; //velocidade vertical
     }
-//limita o movimento do personagem no eixo X
+    //limita o movimento do personagem no eixo X
     private void ChecarLimites()
     {
          if(transform.position.x > limiteFundo)
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool isGrounded() => _characterController.isGrounded;
     
-//rotação do personagem
+    //rotação do personagem
     public void Rotation()
     {
         bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
