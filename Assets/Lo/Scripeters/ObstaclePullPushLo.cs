@@ -9,7 +9,9 @@ public class ObstaclePullPushLo : MonoBehaviour
 
     private ConfigurableJoint activeJoint;
     private Rigidbody targetRigidbody;
-    private bool isGrabbing = false;
+
+    // variáveis para animação
+    public bool isGrabbing = false;
 
     void Update()
     {
@@ -56,7 +58,7 @@ public class ObstaclePullPushLo : MonoBehaviour
     {
         if (activeJoint != null)
         {
-            Destroy(activeJoint); // destroi a Joint entre o player e o objeto
+            Destroy(activeJoint); // destroi a joint entre o player e o objeto
         }
         
         targetRigidbody = null; //esquece o ultimo objeto puxado e reseta o estado da ação para false

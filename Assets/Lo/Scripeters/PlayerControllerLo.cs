@@ -5,25 +5,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerLo : MonoBehaviour
 {
+    // movimentação
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
-
-    [SerializeField] private float gravityMultiplier = 1; // multiplicador gravidade
     private float _gravity = -9.81f; // gravidade
     private float _velocity; // velocidade vertical
-
+    [SerializeField] private float gravityMultiplier = 1; // multiplicador gravidade
     [SerializeField] private float speed = 7; // velocidade movimento
     [SerializeField] private float jumpPower; // força do pulo
     private float _currentVelocity;
 
+    // borda do mapa
     [SerializeField] private float limiteFundo;
     [SerializeField] private float limiteBorda;
 
+    // rotação
     [SerializeField] private float smoothTime = 0.05f; // tempo rotação do personagem
 
     [SerializeField] private LayerMask pushableLayer; // layer que objetos podem ser puxados (pro player parar rotação ao encostar neles)
     [SerializeField] private float interactRange = 0.25f; // range que detecta objetos com rigidbody na layer de cima ^^^^^^
+
     void Awake()
     {
         _characterController = GetComponent<CharacterController>(); 
@@ -32,19 +34,18 @@ public class PlayerControllerLo : MonoBehaviour
     {
         ApplyGravity();
         Rotation();
-
         _characterController.Move(_direction * speed * Time.deltaTime);
 
+        // detectar colisao
         bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
         if(Input.GetKey(KeyCode.E) && _touchingObject)
         {
-            speed = 2.5f;
+            speed = 1f;
         }
         else
         {
             speed = 7f;
         }
-
         ChecarLimites(); // Manter a checagem de limitacao de posição apos a aplicação do movimento - NÃO MEXER
     }
 //sistema movimentacao
@@ -72,7 +73,7 @@ public class PlayerControllerLo : MonoBehaviour
 //sistema de pulo
     public void Jump(InputAction.CallbackContext context)
     {
-        bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
+        bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer);
         if(Input.GetKey(KeyCode.E) && _touchingObject) return;
         
         if(!context.started) return; //nao roda o codigo durante o pulo

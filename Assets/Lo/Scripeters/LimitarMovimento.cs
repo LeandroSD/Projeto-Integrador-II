@@ -14,7 +14,7 @@ public class LimitarMovimento : MonoBehaviour
         posicaoInicial = transform.position;
     }
 
-    void Update()
+    void Update() // limita o movimento EM RELAÇÃO DAONDE O OBJETO TA
     {
         Vector3 posicaoAtual = transform.position;
 
