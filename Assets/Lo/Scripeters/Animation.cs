@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,20 +22,19 @@ public class Animation : MonoBehaviour
     void Update()
     {
         PullPush();
-        Jump();
 
         if (Input.GetKeyUp(KeyCode.E)) // reseta as animações 
         {
             _animator.SetBool("isPulling", false);
             _animator.SetBool("isPushing", false);
         }
-        if (_input == Vector2.zero || _ObstaclePullPushLo.isGrabbing)
+        if (_input == Vector2.zero)
         {
             _animator.SetBool("isWalking", false);
         }
-        if (_characterController.isGrounded)
+        if (_ObstaclePullPushLo.isGrabbing)
         {
-            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isWalking", false);
         }
     }
 
@@ -43,9 +43,9 @@ public class Animation : MonoBehaviour
         if (_ObstaclePullPushLo.isGrabbing) return;
 
         _input = context.ReadValue<Vector2>();
-        if (_input != Vector2.zero)
+        if (_input != Vector2.zero && !_ObstaclePullPushLo.isGrabbing)
         {
-            _animator.SetBool("isWalking", true);
+                _animator.SetBool("isWalking", true);
         }
         else
         {
@@ -53,11 +53,15 @@ public class Animation : MonoBehaviour
         }
     }
 
-    public void Jump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame && _characterController.isGrounded)
+        if(_characterController.isGrounded)
         {
             _animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            _animator.SetBool("isJumping", false);
         }
     }
 

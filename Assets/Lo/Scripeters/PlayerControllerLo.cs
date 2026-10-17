@@ -25,7 +25,7 @@ public class PlayerControllerLo : MonoBehaviour
 
     [SerializeField] private LayerMask pushableLayer; // layer que objetos podem ser puxados (pro player parar rotação ao encostar neles)
     [SerializeField] private float interactRange = 0.25f; // range que detecta objetos com rigidbody na layer de cima ^^^^^^
-
+    
     void Awake()
     {
         _characterController = GetComponent<CharacterController>(); 

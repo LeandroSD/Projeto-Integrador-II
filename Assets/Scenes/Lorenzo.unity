@@ -6893,8 +6893,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Mover Setas[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544514}
-        m_TargetAssemblyTypeName: PlayerControllerLo, Assembly-CSharp
+      - m_Target: {fileID: 3358496346005544515}
+        m_TargetAssemblyTypeName: Animation, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -6905,9 +6905,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3358496346005544515}
-        m_TargetAssemblyTypeName: Animation, Assembly-CSharp
-        m_MethodName: Walk
+      - m_Target: {fileID: 3358496346005544514}
+        m_TargetAssemblyTypeName: PlayerControllerLo, Assembly-CSharp
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6939,6 +6939,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b0bfb4d8-af42-4440-9346-6429306545a2
     m_ActionName: 'Player/Abaixar[/Keyboard/leftCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6285316e-6339-4b46-a8b4-d2a06e144925
+    m_ActionName: Player/GamePad
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -7050,7 +7054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 919132147815549775}
-  interactRange: 0.25
+  interactRange: 0.26
   pushableLayer:
     serializedVersion: 2
     m_Bits: 512
