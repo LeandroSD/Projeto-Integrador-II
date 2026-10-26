@@ -1,0 +1,16 @@
+{
+  "keepConnected": true,
+  "logLevel": 3,
+  "timeoutMs": 10000,
+  "keepServerRunning": false,
+  "transportMethod": "streamableHttp",
+  "authOption": "required",
+  "tools": [],
+  "prompts": [],
+  "resources": [],
+  "connectionMode": "Cloud",
+  "host": "https://ai-game.dev/mcp",
+  "skillAutoGenerate": {
+    "claude-code": true
+  }
+}
