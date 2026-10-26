@@ -36,6 +36,10 @@ public class Animation : MonoBehaviour
         {
             _animator.SetBool("isWalking", false);
         }
+        if (_characterController.isGrounded)
+        {
+            _animator.SetBool("isJumping", false);
+        }
     }
 
     public void Walk(InputAction.CallbackContext context) // animação de ANDAR (isWalking)
@@ -59,10 +63,10 @@ public class Animation : MonoBehaviour
         {
             _animator.SetBool("isJumping", true);
         }
-        else
-        {
-            _animator.SetBool("isJumping", false);
-        }
+        // else
+        // {
+        //     _animator.SetBool("isJumping", false);
+        // }
     }
 
     public void PullPush() //(InputAction.CallbackContext context) // animação de PUXAR e EMPURRAR
