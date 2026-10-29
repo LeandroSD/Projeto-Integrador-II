@@ -1415,7 +1415,7 @@ Transform:
   m_GameObject: {fileID: 496363731}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52, y: 3.71, z: -40}
+  m_LocalPosition: {x: -52, y: 3.5, z: -40}
   m_LocalScale: {x: 5, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1981,7 +1981,7 @@ Transform:
   m_GameObject: {fileID: 717653848}
   serializedVersion: 2
   m_LocalRotation: {x: 0.12311966, y: 0.6942702, z: -0.122380204, w: 0.69846517}
-  m_LocalPosition: {x: -4.151886, y: 3.3668704, z: 102.381195}
+  m_LocalPosition: {x: -5.851883, y: 9.14687, z: 99.633194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2912,7 +2912,7 @@ Transform:
   m_GameObject: {fileID: 1117407230}
   serializedVersion: 2
   m_LocalRotation: {x: 0.12311966, y: 0.69427025, z: -0.12238022, w: 0.6984651}
-  m_LocalPosition: {x: -4.151886, y: 3.3668704, z: 102.381195}
+  m_LocalPosition: {x: -5.851883, y: 9.14687, z: 99.633194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6826,7 +6826,7 @@ Transform:
   m_GameObject: {fileID: 2724702021422400646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -50.16, y: 1.5, z: -34.762}
+  m_LocalPosition: {x: -51.86, y: 7.28, z: -37.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6920,10 +6920,14 @@ MonoBehaviour:
     m_ActionId: f63216b3-4fd2-4988-b337-ee95233e8e36
     m_ActionName: 'Player/Pular[/Keyboard/space]'
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
+    m_ActionName: 'Player/Interagir[/Keyboard/e]'
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3358496346005544515}
-        m_TargetAssemblyTypeName: Animation, Assembly-CSharp
-        m_MethodName: PullPush
+      - m_Target: {fileID: 3358496346005544514}
+        m_TargetAssemblyTypeName: PlayerControllerLo, Assembly-CSharp
+        m_MethodName: Crouch
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6933,10 +6937,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a6f62a3c-3bb0-4fc8-9766-1402b04bc28f
-    m_ActionName: 'Player/Interagir[/Keyboard/e]'
-  - m_PersistentCalls:
-      m_Calls: []
+      - m_Target: {fileID: 3358496346005544515}
+        m_TargetAssemblyTypeName: Animation, Assembly-CSharp
+        m_MethodName: Crouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b0bfb4d8-af42-4440-9346-6429306545a2
     m_ActionName: 'Player/Abaixar[/Keyboard/leftCtrl]'
   - m_PersistentCalls:
@@ -7041,6 +7053,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   interactRange: 0.25
+  crouchHeight: 1
+  isCrouching: 0
 --- !u!114 &3358496346005544515
 MonoBehaviour:
   m_ObjectHideFlags: 0

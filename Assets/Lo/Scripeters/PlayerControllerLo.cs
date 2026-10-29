@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerControllerLo : MonoBehaviour
 {
     // movimentação
+    [Header("Movimentação")]
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
@@ -17,18 +18,27 @@ public class PlayerControllerLo : MonoBehaviour
     private float _currentVelocity;
 
     // borda do mapa
+    [Header("Borda do mapa")]
     [SerializeField] private float limiteFundo;
     [SerializeField] private float limiteBorda;
 
     // rotação
+    [Header("Rotação")]
     [SerializeField] private float smoothTime = 0.05f; // tempo rotação do personagem
 
     [SerializeField] private LayerMask pushableLayer; // layer que objetos podem ser puxados (pro player parar rotação ao encostar neles)
     [SerializeField] private float interactRange = 0.25f; // range que detecta objetos com rigidbody na layer de cima ^^^^^^
+
+    // agachar
+    [Header("Agachar")]
+    [SerializeField] private float crouchHeight = 1f; // altura agachado
+    private float _standingHeight;
+    private Vector3 _standingCenter;
+    public bool isCrouching;
     
     void Awake()
     {
-        _characterController = GetComponent<CharacterController>(); 
+        _characterController = GetComponent<CharacterController>();
     }
     void Update()
     {
@@ -42,11 +52,19 @@ public class PlayerControllerLo : MonoBehaviour
         {
             speed = 1f;
         }
+        else if (Input.GetKey(KeyCode.LeftShift) && isGrounded())
+        {
+            speed = 1f;
+        }
         else
         {
             speed = 7f;
         }
+
         ChecarLimites(); // Manter a checagem de limitacao de posição apos a aplicação do movimento - NÃO MEXER
+
+        _standingHeight = _characterController.height;
+        _standingCenter = _characterController.center;
     }
 //sistema movimentacao
     public void Move(InputAction.CallbackContext context)
@@ -75,11 +93,43 @@ public class PlayerControllerLo : MonoBehaviour
     {
         bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer);
         if(Input.GetKey(KeyCode.E) && _touchingObject) return;
+        if(Input.GetKey(KeyCode.LeftShift)) return;
         
         if(!context.started) return; //nao roda o codigo durante o pulo
         if(!isGrounded()) return; //nao roda o codigo se o personagem esta no ar 
 
         _velocity += jumpPower; //velocidade vertical
+    }
+
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if(!isGrounded()) return;
+
+        if (context.started)
+        {
+            SetCrouch(true);
+            isCrouching = true;
+        }
+        else if (context.canceled)
+        {
+            SetCrouch(false);
+            isCrouching = false;
+        }
+
+        if (context.started || context.canceled)
+        {
+            transform.position += Vector3.up * 50f; 
+        }
+    }
+
+    private void SetCrouch(bool crouching)
+    {
+        float newHeight = crouching ? crouchHeight : _standingHeight;
+
+        // mantém os pés no mesmo lugar: o centro desce junto com a altura
+        float heightDiff = _standingHeight - newHeight;
+        _characterController.height = newHeight;
+        _characterController.center = _standingCenter - new Vector3(0f, heightDiff / 2f, 0f);
     }
 //limita o movimento do personagem no eixo X
     private void ChecarLimites()

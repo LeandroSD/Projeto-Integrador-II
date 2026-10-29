@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Animation : MonoBehaviour
+public class Animations : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     private Vector2 _input;
@@ -23,7 +23,7 @@ public class Animation : MonoBehaviour
     {
         PullPush();
 
-        if (Input.GetKeyUp(KeyCode.E)) // reseta as animações 
+        if (Input.GetKeyUp(KeyCode.E))
         {
             _animator.SetBool("isPulling", false);
             _animator.SetBool("isPushing", false);
@@ -42,7 +42,27 @@ public class Animation : MonoBehaviour
         }
     }
 
-    public void Walk(InputAction.CallbackContext context) // animação de ANDAR (isWalking)
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!_animator.GetBool("isWalking"))
+            {
+                _animator.SetBool("isCrouching", true);
+            }
+            else if (_animator.GetBool("isWalking"))
+            {
+                _animator.SetBool("isCrouchRunning", true);
+            }
+        }
+        if (context.canceled)
+        {
+            _animator.SetBool("isCrouchRunning", false);
+            _animator.SetBool("isCrouching", false);
+        }
+    }
+
+    public void Walk(InputAction.CallbackContext context)
     {
         if (_ObstaclePullPushLo.isGrabbing) return;
 
@@ -63,15 +83,11 @@ public class Animation : MonoBehaviour
         {
             _animator.SetBool("isJumping", true);
         }
-        // else
-        // {
-        //     _animator.SetBool("isJumping", false);
-        // }
     }
 
-    public void PullPush() //(InputAction.CallbackContext context) // animação de PUXAR e EMPURRAR
+    public void PullPush()
     {
-        bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
+        bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer);
 
         if(_ObstaclePullPushLo.isGrabbing)
         {
