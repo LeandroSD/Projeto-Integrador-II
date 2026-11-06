@@ -125,7 +125,7 @@ public class PlayerControllerLo : MonoBehaviour
     private void SetCrouch(bool crouching)
     {
         float newHeight = crouching ? crouchHeight : _standingHeight;
-
+ 
         // mantém os pés no mesmo lugar: o centro desce junto com a altura
         float heightDiff = _standingHeight - newHeight;
         _characterController.height = newHeight;

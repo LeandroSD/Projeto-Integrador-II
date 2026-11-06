@@ -32,10 +32,6 @@ public class Animations : MonoBehaviour
         {
             _animator.SetBool("isWalking", false);
         }
-        if (_ObstaclePullPushLo.isGrabbing)
-        {
-            _animator.SetBool("isWalking", false);
-        }
         if (_characterController.isGrounded)
         {
             _animator.SetBool("isJumping", false);
@@ -46,18 +42,10 @@ public class Animations : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!_animator.GetBool("isWalking"))
-            {
-                _animator.SetBool("isCrouching", true);
-            }
-            else if (_animator.GetBool("isWalking"))
-            {
-                _animator.SetBool("isCrouchRunning", true);
-            }
+            _animator.SetBool("isCrouching", true);
         }
         if (context.canceled)
         {
-            _animator.SetBool("isCrouchRunning", false);
             _animator.SetBool("isCrouching", false);
         }
     }
@@ -67,7 +55,7 @@ public class Animations : MonoBehaviour
         if (_ObstaclePullPushLo.isGrabbing) return;
 
         _input = context.ReadValue<Vector2>();
-        if (_input != Vector2.zero && !_ObstaclePullPushLo.isGrabbing)
+        if (_input != Vector2.zero)
         {
                 _animator.SetBool("isWalking", true);
         }
