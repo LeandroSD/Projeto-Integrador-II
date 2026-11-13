@@ -5,40 +5,56 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // movimentação
+    [Header("Movimentação")]
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
-
-    [SerializeField] private float gravityMultiplier = 1; // multiplicador gravidade
     private float _gravity = -9.81f; // gravidade
     private float _velocity; // velocidade vertical
-
-    [SerializeField] private float speed; // velocidade movimento
+    [SerializeField] private float gravityMultiplier = 1; // multiplicador gravidade
+    [SerializeField] private float speed = 7; // velocidade movimento
     [SerializeField] private float jumpPower; // força do pulo
     private float _currentVelocity;
 
+    // borda do mapa
+    [Header("Borda do mapa")]
     [SerializeField] private float limiteFundo;
     [SerializeField] private float limiteBorda;
 
+    // rotação
+    [Header("Rotação")]
     [SerializeField] private float smoothTime = 0.05f; // tempo rotação do personagem
 
     [SerializeField] private LayerMask pushableLayer; // layer que objetos podem ser puxados (pro player parar rotação ao encostar neles)
     [SerializeField] private float interactRange = 0.25f; // range que detecta objetos com rigidbody na layer de cima ^^^^^^
+
+    // agachar
+    [Header("Agachar")]
+    [SerializeField] private float crouchHeight = 1f; // altura agachado
+    private float _standingHeight;
+    private Vector3 _standingCenter;
+    public bool isCrouching;
+    
     void Awake()
     {
-        _characterController = GetComponent<CharacterController>(); 
+        _characterController = GetComponent<CharacterController>();
     }
     void Update()
     {
         ApplyGravity();
         Rotation();
-
         _characterController.Move(_direction * speed * Time.deltaTime);
 
+        // detectar colisao
         bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
         if(Input.GetKey(KeyCode.E) && _touchingObject)
         {
-            speed = 2.5f;
+            speed = 1f;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) && isGrounded())
+        {
+            speed = 1f;
         }
         else
         {
@@ -46,8 +62,11 @@ public class PlayerController : MonoBehaviour
         }
 
         ChecarLimites(); // Manter a checagem de limitacao de posição apos a aplicação do movimento - NÃO MEXER
+
+        _standingHeight = _characterController.height;
+        _standingCenter = _characterController.center;
     }
-    //sistema movimentacao
+//sistema movimentacao
     public void Move(InputAction.CallbackContext context)
     {
         _input = context.ReadValue<Vector2>(); //coloca o valor das teclas do sistema de input na variavel _input
@@ -56,7 +75,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movimentoFinal = (_direction * _velocity) + (_direction.y * Vector3.up);
         _characterController.Move(movimentoFinal * Time.deltaTime);
     }
-    //aplicar gravidade
+//aplicar gravidade
     private void ApplyGravity()
     {
         if (isGrounded() && _velocity < 0.0f)
@@ -69,18 +88,50 @@ public class PlayerController : MonoBehaviour
         }
         _direction.y = _velocity;
     }
-    //sistema de pulo
+//sistema de pulo
     public void Jump(InputAction.CallbackContext context)
     {
-        bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
+        bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer);
         if(Input.GetKey(KeyCode.E) && _touchingObject) return;
+        if(Input.GetKey(KeyCode.LeftShift)) return;
         
         if(!context.started) return; //nao roda o codigo durante o pulo
         if(!isGrounded()) return; //nao roda o codigo se o personagem esta no ar 
 
         _velocity += jumpPower; //velocidade vertical
     }
-    //limita o movimento do personagem no eixo X
+
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if(!isGrounded()) return;
+
+        if (context.started)
+        {
+            SetCrouch(true);
+            isCrouching = true;
+        }
+        else if (context.canceled)
+        {
+            SetCrouch(false);
+            isCrouching = false;
+        }
+
+        if (context.started || context.canceled)
+        {
+            transform.position += Vector3.up * 50f; 
+        }
+    }
+
+    private void SetCrouch(bool crouching)
+    {
+        float newHeight = crouching ? crouchHeight : _standingHeight;
+ 
+        // mantém os pés no mesmo lugar: o centro desce junto com a altura
+        float heightDiff = _standingHeight - newHeight;
+        _characterController.height = newHeight;
+        _characterController.center = _standingCenter - new Vector3(0f, heightDiff / 2f, 0f);
+    }
+//limita o movimento do personagem no eixo X
     private void ChecarLimites()
     {
          if(transform.position.x > limiteFundo)
@@ -96,7 +147,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool isGrounded() => _characterController.isGrounded;
     
-    //rotação do personagem
+//rotação do personagem
     public void Rotation()
     {
         bool _touchingObject = Physics.CheckSphere(transform.position, interactRange, pushableLayer); // true se colide com empurraveis
