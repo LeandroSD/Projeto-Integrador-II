@@ -1,29 +1,74 @@
 using UnityEngine;
+using System.Collections;
+using System;
 
 public class VisionAgent1 : MonoBehaviour
 {
  [SerializeField] float visionRange = 1f;
-  [SerializeField] float visionAngle = 45f;
+ [SerializeField] float visionAngle = 45f;
  [SerializeField] Transform target;
+ [SerializeField] Transform lineOfSightPivot;
 
+  bool detected;
+
+public Action OnDetected;
+public Action OnLoseDetection;
  private void Update()
  {
     if(target == null) {Debug.LogWarning("No target assigned"); return;}
 
     bool b = CheckRange();
 
-    if(b == false) {return; }
+    if(b == false) { UnDetected(); return; }
     b = CheckAngle();
 
-    if (b == true)
+    if (b == false) {UnDetected(); return; }
+
+    b = LineOfSightCheck();
+
+    if(b == false)
     {
-        Debug.Log("I can see you");
-        target.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+        UnDetected();
+        return;
     }
-    else
+
+    Detected();
+ }
+ private bool LineOfSightCheck()
+ {
+    VisionPoints visionPoints = target.GetComponent<VisionPoints>();
+
+    Vector3 direction = (visionPoints.centerOfMass.position - lineOfSightPivot.position).normalized;
+    Ray ray = new Ray(lineOfSightPivot.position, direction);
+
+    RaycastHit hit;
+    if(Physics.Raycast(ray, out hit)){
+        if (hit.transform == target)
+        {
+            return true;
+           
+        }
+    }
+    return false;
+ }
+ 
+ private void Detected()
+ {
+    if(detected == false)
     {
-        Debug.Log("No,sorry mate can't see you!");
-        target.gameObject.GetComponentInChildren<Renderer>().material.color = Color.white;
+        detected = true;
+        //Game Over - Destruindo o jogador
+        Destroy(target.gameObject);
+        OnDetected?.Invoke();
+
+    }
+ }
+ private void UnDetected()
+ {
+    if(detected == true)
+    {
+        detected = false;
+        OnLoseDetection?.Invoke();
     }
  }
 
@@ -41,5 +86,17 @@ public class VisionAgent1 : MonoBehaviour
 
         return angle < visionAngle;
     }
+private void OnDrawGizmosSelected()
+{
+    Gizmos.DrawWireSphere(transform.position, visionRange);
+
+    Quaternion rotation = Quaternion.AngleAxis(visionAngle, Vector3.up);
+    Vector3 endPoint = transform.position + (rotation * transform.forward * visionRange);
+    Gizmos.DrawLine(transform.position, endPoint);
+
+    rotation = Quaternion.AngleAxis(-visionAngle, Vector3.up);
+    endPoint = transform.position + (rotation * transform.forward * visionRange);
+    Gizmos.DrawLine(transform.position, endPoint);
+}
 }
 
