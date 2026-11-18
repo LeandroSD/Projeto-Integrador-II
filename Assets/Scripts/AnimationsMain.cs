@@ -32,6 +32,10 @@ public class AnimationsMain : MonoBehaviour
         {
             _animator.SetBool("isWalking", false);
         }
+    }
+
+    void LateUpdate()
+    {
         if (_characterController.isGrounded)
         {
             _animator.SetBool("isJumping", false);
@@ -90,10 +94,10 @@ public class AnimationsMain : MonoBehaviour
                 _animator.SetBool("isPushing", false);
             }
         }
-        else
-        {
-            _animator.SetBool("isPushing", false);
-            _animator.SetBool("isPulling", false);
-        }
+        // else
+        // {
+        //     _animator.SetBool("isPushing", false);
+        //     _animator.SetBool("isPulling", false);
+        // }
     }
 }
