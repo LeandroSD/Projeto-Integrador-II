@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+
+        _standingHeight = _characterController.height;
+        _standingCenter = _characterController.center;
     }
     void Update()
     {
@@ -116,10 +119,10 @@ public class PlayerController : MonoBehaviour
             isCrouching = false;
         }
 
-        if (context.started || context.canceled)
-        {
-            transform.position += Vector3.up * 50f; 
-        }
+        // if (context.started || context.canceled)
+        // {
+        //     transform.position += Vector3.up * 50f; 
+        // }
     }
 
     private void SetCrouch(bool crouching)
