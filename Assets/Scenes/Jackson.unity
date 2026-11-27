@@ -986,8 +986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0199b8dbc3501ad47b642b34b5e606c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 5
-  visionAngle: 20
+  visionRange: 9.9
+  visionAngle: 7.1
   target: {fileID: 3358496346005544508}
   lineOfSightPivot: {fileID: 1401651790}
 --- !u!114 &331117459
@@ -6679,6 +6679,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   interactRange: 0.25
+  crouchHeight: 1
+  isCrouching: 0
 --- !u!114 &3358496346005544514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6697,6 +6699,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   grabPoint: {fileID: 3358496346005544508}
+  isGrabbing: 0
 --- !u!114 &3358496346005544515
 MonoBehaviour:
   m_ObjectHideFlags: 0
